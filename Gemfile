@@ -13,7 +13,6 @@ gem "haml", ">= 3.1.alpha.50"
 gem "haml-rails"
 gem "sass"
 gem "jquery-rails"
-gem 'barista', '~> 1.0', :group => [:test, :development]
 
 gem 'heroku'
 
