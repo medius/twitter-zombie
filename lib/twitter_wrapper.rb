@@ -32,9 +32,7 @@ class TwitterWrapper
    
    def get_twitter(atoken, asecret)
      @auth.authorize_from_access(atoken, asecret)
-     puts "Auth in get_twitter: #{@auth}"
      twitter = Twitter::Base.new @auth
-     puts "Got twitter client with auth"
      twitter.home_timeline(:count => 1)
      twitter
    end

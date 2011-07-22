@@ -1,0 +1,8 @@
+= form_tag follow_path do
+  %ul.results
+    - unless @results.empty?
+      - @results.each do |result|
+        %li
+          = check_box_tag "result_ids[]", result.screen_name
+          = result.screen_name
+  = submit_tag "Follow"

@@ -4,6 +4,9 @@ TweetZombie::Application.routes.draw do
   match "/twitter/tweet" => "twitter#tweet", :as => "tweet"
   match "/twitter/callback" => "twitter#callback"
   match "/twitter/signout" => "twitter#signout", :as => "signout"
+  match "/twitter/unfollow" => "twitter#unfollow", :as => "unfollow"
+  match "/twitter/search" => "twitter#search", :as => "search"
+  match "/twitter/follow" => "twitter#follow", :as => "follow"
   root :to => "twitter#index"
 
   

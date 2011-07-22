@@ -3,26 +3,30 @@
     %h2.title Twitter Client
     .inner
       - if @twitter
-        .twitter_box
-          - form_tag tweet_path, :method => :post do
-            %h4="@#{@account} says:"
-            = text_area_tag 'tweet','', :id => 'twitter'
-            %br.clear
-            %div{:style => 'float:right'}
-              %span#count 
-              characters remaining
-            = submit_tag 'Tweet!', :id => 'submitbutton'
-          %br.clear
-          %br.clear
-          %br.clear
-        %h2 Timeline
-        - @tweets.each do |tweet|
-          .tweet
-            %strong
-              ="#{tweet.user.screen_name}:"
-            ="#{tweet.text}"
+      
+        = "Welcome #{@name} (@#{@account})"
+        = link_to "Sign Out", signout_path
+        
+        %h2 Current Followees
+        = form_tag unfollow_path do
+          = will_paginate @friends
+          %ul.friends
+            - unless @friends.empty?
+              - @friends.each do |friend|
+                %li
+                  = check_box_tag "friend_ids[]", friend.screen_name
+                  = friend.screen_name
+          = submit_tag "Unfollow"
+          
+        %h2 Search and follow interesting people
+        = form_tag search_path, :remote=>true, :method => :get do
+          = text_field_tag :search, params[:search]
+          = submit_tag "Search"
+          
+        %h5 Search results
+        #search_results
       - else
         %p
-          The application needs your permission to access your Twitter account. Please click the button below. If you've already signed in with Twitter, then refresh the page because Twitter might be unstable (so the application can't connect with it).
-        =link_to image_tag("http://apiwiki.twitter.com/f/1242697715/Sign-in-with-Twitter-darker.png"), signin_path
+          The application needs your permission to access your Twitter account. Please click the button below. 
+        =link_to image_tag("https://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-d.png"), signin_path
           
