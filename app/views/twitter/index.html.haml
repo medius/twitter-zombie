@@ -1,13 +1,13 @@
 .block
   .content
-    %h2.title Twitter Client
+    %h2.title Twitter Zombie
     .inner
       - if @twitter
       
-        = "Welcome #{@name} (@#{@account})"
+        = "#{@name} #{@account}"
         = link_to "Sign Out", signout_path
         
-        %h2 Current Followees
+        %h4 Current Followees
         = form_tag unfollow_path do
           = will_paginate @friends
           %ul.friends
@@ -18,7 +18,7 @@
                   = friend.screen_name
           = submit_tag "Unfollow"
           
-        %h2 Search and follow interesting people
+        %h4 Search and follow interesting people
         = form_tag search_path, :remote=>true, :method => :get do
           = text_field_tag :search, params[:search]
           = submit_tag "Search"
