@@ -1,4 +1,12 @@
 TweetZombie::Application.routes.draw do
+  match "/twitter/auth" => "twitter#auth"
+  match "/twitter/signin" => "twitter#signin", :as => "signin"
+  match "/twitter/tweet" => "twitter#tweet", :as => "tweet"
+  match "/twitter/callback" => "twitter#callback"
+  match "/twitter/signout" => "twitter#signout", :as => "signout"
+  root :to => "twitter#index"
+
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

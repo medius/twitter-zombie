@@ -1,0 +1,6 @@
+--- 
+consumer_key: ENV['TWITTER_CONSUMER_KEY']
+consumer_secret: ENV['TWITTER_CONSUMER_SECRET']
+callback_urls: 
+  production: http://twitter-zombie.heroku.com/twitter/callback
+  development: http://dev.twipler.com:3000/twitter/callback
