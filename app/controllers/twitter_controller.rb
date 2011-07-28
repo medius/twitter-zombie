@@ -1,7 +1,5 @@
 class TwitterController < ApplicationController
   include TwitterHelper
-  before_filter :signed_in?
-  
   respond_to :html, :json, :js
       
   def index
