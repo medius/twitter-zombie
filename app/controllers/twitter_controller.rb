@@ -131,7 +131,8 @@ class TwitterController < ApplicationController
   # Initialize Twitter consumer
   def get_consumer
     @consumer = OAuth::Consumer.new(TOKENS['consumer_key'], TOKENS['consumer_secret'], 
-                                  { :site => "http://api.twitter.com" })
+                                  { :site => "http://api.twitter.com",
+                                    :authorize_path => '/oauth/authenticate' })
   end     
   
   def get_screen_names(users)
