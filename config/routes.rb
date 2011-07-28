@@ -7,6 +7,7 @@ TweetZombie::Application.routes.draw do
   match "/twitter/unfollow" => "twitter#unfollow", :as => "unfollow"
   match "/twitter/search" => "twitter#search", :as => "search"
   match "/twitter/follow" => "twitter#follow", :as => "follow"
+  
   root :to => "twitter#index"
 
   

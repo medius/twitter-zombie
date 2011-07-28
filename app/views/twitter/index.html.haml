@@ -2,20 +2,20 @@
   .content
     %h2.title Twitter Zombie
     .inner
-      - if @twitter
+      - if signed_in?
       
-        = "Welcome #{@name} - @#{@account}"
+        = "Welcome #{@user_name} - @#{@screen_name}"
         = link_to "Sign Out", signout_path
         
-        %h4 Current Followees
+        %h4= "Current Followees - (#{@friends_count})"
         = form_tag unfollow_path do
           = will_paginate @friends
           %ul.friends
             - unless @friends.empty?
               - @friends.each do |friend|
                 %li
-                  = check_box_tag "friend_ids[]", friend.screen_name
-                  = friend.screen_name
+                  = check_box_tag "friend_ids[]", friend
+                  = friend
           = submit_tag "Unfollow"
           
         %h4 Search and follow interesting people

@@ -3,6 +3,6 @@
     - unless @results.empty?
       - @results.each do |result|
         %li
-          = check_box_tag "result_ids[]", result.screen_name
-          = result.screen_name
+          = check_box_tag "result_ids[]", result
+          = result
   = submit_tag "Follow"
