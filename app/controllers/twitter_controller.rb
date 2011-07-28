@@ -1,7 +1,5 @@
 class TwitterController < ApplicationController
   include TwitterHelper
-  #require 'twitter_wrapper.rb'
-  #before_filter :signin, :only => [:index, :signin]
   before_filter :signed_in?
   
   respond_to :html, :json, :js
@@ -58,7 +56,26 @@ class TwitterController < ApplicationController
     redirect_to :action => :index
   end
   
+  # Mass follow
+  def follow
+    begin
+      @twitter = get_twitter 
+      params[:result_ids].each do |result_id|
+        begin
+          @data = follow_user(@twitter, result_id, true)
+        rescue
+          flash[:error] = "Error in following #{result_id}"
+        end
+      end
+      info = get_user_info(@twitter)
+      @friends_count = get_user_friends_count(info)
+    rescue
+      flash[:error] = "Error in following these users! Please try again."
+    end
+    redirect_to root_url, :notice => "Follow complete."
+  end
   
+  # Mass unfollow
   def unfollow
     begin
       @twitter = get_twitter      
@@ -85,24 +102,6 @@ class TwitterController < ApplicationController
     rescue
       flash[:error] = "Error in searching Twitter"
     end
-  end
-  
-  def follow
-    begin
-      @twitter = get_twitter 
-      params[:result_ids].each do |result_id|
-        begin
-          @data = follow_user(@twitter, result_id, true)
-        rescue
-          flash[:error] = "Error in following #{result_id}"
-        end
-      end
-      info = get_user_info(@twitter)
-      @friends_count = get_user_friends_count(info)
-    rescue
-      flash[:error] = "Error in following these users! Please try again."
-    end
-    redirect_to root_url, :notice => "Follow complete."
   end
   
   private
