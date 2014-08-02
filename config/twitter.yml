@@ -1,6 +1,6 @@
 # Twitter parameters
-consumer_key: xcQnowmpUKU7KTWjiyg
-consumer_secret: fuenh1AbUpKSrFTMUvRO4w9tKPE9w5cUgRnf7QNgE
+consumer_key: kasdhfkjas
+consumer_secret: kashdfkdsf
 callback_urls: 
   production: http://twitter-zombie.heroku.com/twitter/callback
   development: http://dev.twipler.com:3000/twitter/callback
